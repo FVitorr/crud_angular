@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'crud-angular';
+  title = 'Crud-Angular e Spring';
 }

@@ -1,0 +1,20 @@
+[
+  {
+      "id": 1,
+      "cidade": "Formiga",
+      "estado": "MG",
+      "populacao": 67822
+  },
+  {
+      "id": 2,
+      "cidade": "Sete Lagoas",
+      "estado": "MG",
+      "populacao": 241835
+  },
+  {
+      "id": 3,
+      "cidade": "Belo Horizonte",
+      "estado": "MG",
+      "populacao": 2722000
+  }
+]
