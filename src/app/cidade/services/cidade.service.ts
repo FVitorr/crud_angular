@@ -9,7 +9,7 @@ import { delay, take, tap } from 'rxjs';
 })
 export class CidadeService {
 
-  private readonly API = './public/cidade.json';
+  private readonly API = './publics/cidade.json';
   constructor(private httpClient: HttpClient) {}
 
   findAll(){
@@ -18,5 +18,9 @@ export class CidadeService {
       delay(5000),
       tap(cidade => console.log(cidade))
     );
+  }
+
+  nCidade(){
+
   }
 }
