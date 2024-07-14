@@ -3,6 +3,7 @@
     <mat-toolbar color="primary">
       <span> Cidades </span>
     </mat-toolbar>
+
     <div *ngIf="cidade$ | async as cidade; else loading">
       <table mat-table [dataSource]="cidade" class="mat-elevation-z8">
         <ng-container matColumnDef="id">
@@ -12,7 +13,14 @@
 
         <ng-container matColumnDef="cidade">
           <th mat-header-cell *matHeaderCellDef>Cidade</th>
-          <td mat-cell *matCellDef="let element">{{ element.cidade }}</td>
+          <td mat-cell *matCellDef="let element">
+            <ng-container *ngIf="editMode[element.id]; else viewMode">
+              <input matInput [(ngModel)]="element.cidade" />
+            </ng-container>
+            <ng-template #viewMode>
+              {{ element.cidade }}
+            </ng-template>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="estado">
@@ -23,6 +31,23 @@
         <ng-container matColumnDef="populacao">
           <th mat-header-cell *matHeaderCellDef>População</th>
           <td mat-cell *matCellDef="let element">{{ element.populacao }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>
+            <button mat-fab extended class="add_" color="accent" (click)="onAdd()">
+              <mat-icon>add</mat-icon>
+              Cidade
+            </button>
+          </th>
+          <td mat-cell *matCellDef="let cidade" class="action">
+            <button mat-mini-fab aria-label="edit" color="accent">
+              <mat-icon class="edit_btn">edit</mat-icon>
+            </button>
+            <button mat-mini-fab aria-label="delete" color="warn" (click) = "onDelete(cidade.id)">
+              <mat-icon class="delete_btn" >delete</mat-icon>
+            </button>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -36,6 +61,3 @@
     </ng-template>
   </mat-card-content>
 </mat-card>
-
-
-

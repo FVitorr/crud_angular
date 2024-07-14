@@ -1,0 +1,19 @@
+.form-fields {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.form-fields mat-form-field {
+  margin-left: 8px;
+  width: 220px;
+}
+
+.btn_area button{
+  margin-left: 1rem;
+  width: 100px;
+  height: 38px;
+  border-radius: 0.5rem;
+  background-color: #3F51B5;
+  color: white;
+}

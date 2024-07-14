@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,7 +18,8 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     MatToolbarModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatFormFieldModule
   ],
   providers: [
     provideAnimationsAsync()
