@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, Observable, of } from 'rxjs';
@@ -10,12 +10,13 @@ import { CidadeService } from '../services/cidade.service';
 @Component({
   selector: 'app-cidade',
   templateUrl: './cidade.component.html',
-  styleUrl: './cidade.component.scss'
+  styleUrl: './cidade.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class CidadeComponent {
   cidade$: Observable<Cidade[]> ;
-  editMode: { [key: number]: boolean } = {}; // Armazena o estado de edição de cada linha
-
+  editMode: { [key: number]: boolean } = {}; // Correção para usar 'number'
+  editedCidade: { [key: number]: Cidade } = {}; // Para armazenar valores editados
 
   //cidadeService: CidadeService;
   constructor(private cidadeService: CidadeService, private snackBar: MatSnackBar, private dialog: MatDialog ){
@@ -76,7 +77,33 @@ export class CidadeComponent {
   }
 
   onEdit(cidade: Cidade): void {
+    console.log('onEdit')
     this.editMode[cidade.id] = !this.editMode[cidade.id];
+    if (this.editMode[cidade.id]) {
+      // Store a copy of the original cidade for editing
+      this.editedCidade[cidade.id] = { ...cidade };
+    }
+  }
+
+  onCancel(cidade: Cidade): void {
+    this.editMode[cidade.id] = false;
+    delete this.editedCidade[cidade.id];
+  }
+
+  onSave(cidade: Cidade): void {
+    if (this.editedCidade[cidade.id]) {
+      this.cidadeService.update(this.editedCidade[cidade.id]).subscribe({
+        next: () => {
+          this.showSuccessMessage('Cidade atualizada com sucesso.');
+          this.cidade$ = this.cidadeService.findAll(); // Atualiza a lista após a edição
+        },
+        error: (err) => {
+          this.showErrorMessage('Erro ao atualizar cidade.');
+          console.error(err);
+        }
+      });
+      this.editMode[cidade.id] = false;
+    }
   }
 
   private showSuccessMessage(message: string): void {

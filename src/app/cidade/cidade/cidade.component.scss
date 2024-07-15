@@ -12,13 +12,49 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 100px;
+  width: 130px;
   height: 38px;
   border-radius: 0.5rem;
   background-color: #3F51B5;
   color: white;
+  border: 1px solid wheat;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona um box-shadow */
+
+  &:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 }
 
 .action button{
-  margin-left: 1rem;
+  margin-right: 1rem;
+  &:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+
+
+.ed_input {
+  width: 50%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+}
+.aTable .mat-cell, .aTable .mat-header-cell {
+  padding: 8px;
+  white-space: nowrap;
+}
+
+.aTable td {
+  width: 300px; /* Defina um tamanho fixo conforme necessário */
+}
+
+.aTable .mat-header-cell {
+  width: 200px; /* Defina um tamanho fixo conforme necessário */
+}
+
+.mat-elevation-z8 {
+  width: 100%; /* Ajuste a largura conforme necessário */
 }

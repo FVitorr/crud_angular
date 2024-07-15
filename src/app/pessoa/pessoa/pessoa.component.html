@@ -1,0 +1,73 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <mat-toolbar color="primary">
+      <span> Pessoas </span>
+      <span class="spacer"></span>
+      <button mat-icon-button class="add_" aria-label="Adicionar Pessoa">
+        <mat-icon>add</mat-icon>
+        Adicionar Pessoa
+      </button>
+    </mat-toolbar>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
+
+    <!-- Time Column -->
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef> Time </th>
+      <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+    </ng-container>
+
+    <!-- CPF Column -->
+    <ng-container matColumnDef="cpf">
+      <th mat-header-cell *matHeaderCellDef> CPF </th>
+      <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
+    </ng-container>
+
+    <!-- Hobbie Column -->
+    <ng-container matColumnDef="hobbie">
+      <th mat-header-cell *matHeaderCellDef> Hobbie </th>
+      <td mat-cell *matCellDef="let element"> {{element.hobbie}} </td>
+    </ng-container>
+
+      <!-- Cidade Column -->
+      <ng-container matColumnDef="cidade">
+        <th mat-header-cell *matHeaderCellDef> Cidade </th>
+        <td mat-cell *matCellDef="let element"> {{element.cidade.cidade}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Editar / Deletar </th>
+        <td mat-cell *matCellDef="let element" class="action">
+          <button  aria-label="edit"  *ngIf="!editMode[element.id]">
+            <mat-icon class="edit_btn">edit</mat-icon>
+          </button>
+          <button aria-label="save"  *ngIf="editMode[element.id]">
+            <mat-icon class="save_btn">save</mat-icon>
+          </button>
+          <button aria-label="delete"  *ngIf="!editMode[element.id]">
+            <mat-icon class="delete_btn">delete</mat-icon>
+          </button>
+          <button aria-label="cancelar"  *ngIf="editMode[element.id]">
+            <mat-icon class="delete_btn">cancel</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </mat-card-content>
+</mat-card>
+

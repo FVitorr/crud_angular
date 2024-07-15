@@ -26,5 +26,9 @@ export class CidadeService {
   delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.API}/${id}`);
   }
+
+  update(cidade: Cidade): Observable<Cidade> {
+    return this.httpClient.put<Cidade>(`${this.API}/${cidade.id}`, cidade);
+  }
   
 }
