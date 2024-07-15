@@ -1,0 +1,29 @@
+.form-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/* Estilos para telas com largura de 980px ou menor */
+@media (max-width: 980px) {
+  .form-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-fields mat-form-field {
+  margin-left: 8px;
+  width: 220px;
+  height: 80px;
+}
+
+.btn_area button{
+  margin-left: 1rem;
+  width: 100px;
+  height: 38px;
+  border-radius: 0.5rem;
+  background-color: #3F51B5;
+  color: white;
+}

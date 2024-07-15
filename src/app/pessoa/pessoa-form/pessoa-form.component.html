@@ -1,0 +1,30 @@
+
+  <h1 mat-dialog-title>Adicionar Pessoa</h1>
+  <div mat-dialog-content class="form-fields">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Nome" [(ngModel)]="pessoa.nome">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Time</mat-label>
+      <input matInput placeholder="Time" [(ngModel)]="pessoa.time" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>CPF</mat-label>
+      <input matInput placeholder="CPF"  [(ngModel)]="pessoa.cpf" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Hobbie</mat-label>
+      <input matInput placeholder="Hobbie"  [(ngModel)]="pessoa.hobbie" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Cidade</mat-label>
+      <input matInput placeholder="Cidade"  [(ngModel)]="pessoa.cpf" />
+    </mat-form-field>
+  </div>
+
+<div mat-dialog-actions class="btn_area">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button (click)="onSave()">Salvar</button>
+</div>
+
