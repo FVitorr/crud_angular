@@ -2,6 +2,11 @@
   <mat-card-content>
     <mat-toolbar color="primary">
       <span> Cidades </span>
+      <span class="spacer"></span>
+      <button mat-fab extended class="add_" color="accent" (click)="onAdd()">
+        <mat-icon>add</mat-icon>
+        Adicionar Cidade
+      </button>
     </mat-toolbar>
 
     <div *ngIf="cidade$ | async as cidade; else loading" class="aTable">
@@ -51,10 +56,7 @@
 
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>
-            <button mat-fab extended class="add_" color="accent" (click)="onAdd()">
-              <mat-icon>add</mat-icon>
-              Adicionar Cidade
-            </button>
+            Editar / Deletar
           </th>
           <td mat-cell *matCellDef="let element" class="action">
             <button  aria-label="edit" color="accent" *ngIf="!editMode[element.id]" (click)="onEdit(element)">

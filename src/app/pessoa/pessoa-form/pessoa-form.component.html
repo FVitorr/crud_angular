@@ -17,9 +17,13 @@
       <mat-label>Hobbie</mat-label>
       <input matInput placeholder="Hobbie"  [(ngModel)]="pessoa.hobbie" />
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <mat-form-field>
       <mat-label>Cidade</mat-label>
-      <input matInput placeholder="Cidade"  [(ngModel)]="pessoa.cpf" />
+      <mat-select placeholder="Selecione uma cidade">
+        <mat-option *ngFor="let cidade of (cidades$ | async)" [value]="pessoa.cidade">
+          {{cidade.cidade}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 

@@ -7,18 +7,22 @@
   justify-content: center;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
 
 .add_{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  width: 130px;
+  width: 180px;
   height: 38px;
   border-radius: 0.5rem;
   background-color: #3F51B5;
   color: white;
   border: 1px solid wheat;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona um box-shadow */
+  font-size: 14px;
 
   &:hover{
     cursor: pointer;
