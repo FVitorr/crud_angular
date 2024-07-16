@@ -19,8 +19,8 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Cidade</mat-label>
-      <mat-select placeholder="Selecione uma cidade">
-        <mat-option *ngFor="let cidade of (cidades$ | async)" [value]="pessoa.cidade">
+      <mat-select placeholder="Selecione uma cidade"  [(ngModel)]="pessoa.cidade">
+        <mat-option *ngFor="let cidade of (cidades$ | async)" [value]="cidade">
           {{cidade.cidade}}
         </mat-option>
       </mat-select>

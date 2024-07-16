@@ -30,7 +30,9 @@ export class PessoaFormComponent {
 
 
   onSave(): void {
-    this.dialogRef.close(this.cidade);
+    if (this.validateCPF(this.pessoa.cpf)){
+      this.dialogRef.close(this.pessoa);
+    }
   }
 
   onCancel(): void {
@@ -44,4 +46,30 @@ export class PessoaFormComponent {
       verticalPosition: 'bottom',
     });
   }
+
+  validateCPF(cpf: string): boolean {
+    if (!this.isValidCPF(cpf)) {
+      this.showErrorMessage('CPF invalido');
+      return false
+    }return true
+  }
+
+  private isValidCPF(cpf: string): boolean {
+    cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
+
+    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+      return false; // CPF inválido se todos os dígitos forem iguais
+    }
+
+    const digits = cpf.split('').map(Number);
+    const checkDigit = (weight: number[]) => {
+      const sum = weight.reduce((acc, val, idx) => acc + val * digits[idx], 0);
+      const remainder = (sum * 10) % 11;
+      return remainder === 10 ? 0 : remainder;
+    };
+
+    return digits[9] === checkDigit([...Array(9).keys()].map(i => 10 - i)) &&
+           digits[10] === checkDigit([...Array(10).keys()].map(i => 11 - i));
+  }
+
 }

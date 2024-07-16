@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Cidade } from '../model/cidade';
-import { delay, Observable, take, tap } from 'rxjs';
+import { catchError, delay, Observable, take, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +24,18 @@ export class CidadeService {
   }
 
   delete(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.API}/${id}`);
+    return this.httpClient.delete<void>(`${this.API}/${id}`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   update(cidade: Cidade): Observable<Cidade> {
     return this.httpClient.put<Cidade>(`${this.API}/${cidade.id}`, cidade);
   }
   
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    console.error('An error occurred:', error);
+    return throwError(() => new Error('Something bad happened; please try again later.'));
+  }
 }
